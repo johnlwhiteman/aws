@@ -92,7 +92,7 @@
 ## SSH Overview and Troubleshooting
 
 * Linux / Max / Windows >= 10
-* Connection timeout - related to the security group or filewall
+* Connection timeout - related to the security group or firewall
   * If still an issue if fixed in AWS, then it might be a corporate firewall issue
 * Connection refused - instance is running but no SSH server running
 * Permission denied - Wrong security key, user, EC2 configuration
@@ -110,7 +110,7 @@
 * On-Demand Instances - short workload, predictable pricing, pay by second
 * Reserved (1 & 3 years)
   * Reserved Instances - long workloads
-  * Convertible Reserved Instances - long worloads with flexible instances
+  * Convertible Reserved Instances - long workloads with flexible instances
 * Savings Plans (1 & 3 years) - commitment to an amount of usage, long workload
 * Spot Instances - short workloads, cheap, can lose instances (less reliable)
 * Dedicated Host - book an entire physical server, control instance placement
@@ -130,7 +130,7 @@
 
 * Up to 72% discount compared to on-demand
 * You reserve a specific instance attributes (Instance Type, Region, Tenancy, OS)
-* Resesrvation Period - 1 year (+discount) or 3 years (+++discount)
+* Reservation Period - 1 year (+discount) or 3 years (+++discount)
 * Payment Options - No Upfront (+), Partial Upfront (++), All Upfront (+++)
 * Reserved Instance's Scope - Regional or Zonal (reserve capacity in an AZ)
 * Recommended for steady-state usage applications (think database)
@@ -143,9 +143,91 @@
 
 * Get a discount based on long-term usage (up to 72% - same as RIs)
 * Commit to a certain type of usage ($10/hour for 1 or 3 years)
-* 
+* Usage beyond EC2 savings plans is billed at the on-demand price
+* Locked to a specific instance family & AWS region
+* Flexible across:
+  * Instance size
+  * OS
+  * Tenacy (host, dedicated, default)
 
+### EC2 Spot Instances
 
+* Get a discount of up to 90% compared to on-demand
+* Instances that you can "lose" at any point of imte if your max price is less than the current spot price
+* MOST cost-efficient instances in AWS
+* Useful for workloads that are resilient to failure
+  * Batch jobs
+  * Data analysis
+  * Image processing
+  * Any distributed workloads
+  * Workloads with a flexible start and end time
+* Not suitable for critical jobs or databases
+
+### EC2 Dedicated Hosts
+
+* A physical server with EC2 instance capacity fully dedicated to your use
+* Allows you to address compliance requirements and use your existing server-bound software licenses (per core, per socket, etc.)
+* Purchasing options
+  * On-demand - pay per second for active dedicated host
+  * Reserved - 1 or 3 years (no upfront, partial upfron, all upfront)
+* The most expensive option
+* Useful for software that has complicated licensing model
+* Or for companies that have strong regulatory or compliance needs
+
+### EC2 Dedicated Instances
+
+* Instances run on hardware that's dedicated to you
+* May share hardware with other instances in the same account
+* No control over instance placement
+  * Can move hardware after Stop / Start
+
+### EC2 Capacity Reservations
+
+* Reserve On-Demand instnaces capacity in a specific AZ for any duration
+* You always have access to EC2 capacity when you need it
+* No time commitment (create/cancel anytime), no billing discounts
+* Combine with Regtional Reserved Instances and Savings Plans to benefit from billing discounts
+* You're charged at On-Demand rate whether you run instances or not
+* Suitable for short-term, uniterrupted workloads that need to be in a specific AZ
+
+### Which Purchasing Option Is Right for Me?
+
+* On demand: coming and staying resort whenever we like, we pay the full price
+* Reserved: like planning ahead and if we plan to stay for al ong time, we may get a good discount
+* Savings Plans: pay a certain amount per hour for a certain period and stay in any room type (suite, sea view, ...)
+* Spot instances: the hotel allows people to bid for the empty rooms and the higest bidder keeps the rooms. You can get kicked out at any time.
+* Dedicated hosts: we book an entire building of the resort
+* Capacity reservations: you book a room for a period with a full price even if you don't stay in it
+
+## Shared Responsibility
+
+### AWS Responsible
+
+* Infrastructure (global network security)
+* Isolation on physical hosts
+* Replacing faulty hardware
+* Compliance validation
+
+### User Responsible
+
+* Security group rules
+* OS patches and updates
+* SW and utilities installed on the EC2 instance
+* IAM roles and access management 
+* Data security
+
+## Summary
+
+* EC2 Instance: AMI (OS) + Instance Size (CUP + RAM) + Storage + security groups + EC2 user data
+* Security Groups: firewall attached to the ec2 instance
+* EC2 User Data: script launched at the first start of an instance
+* SSH: start a terminal into our EC2 instances (port 22)
+* EC2 Instance Role: link to IAM roles
+* Purchasing Options: On-Emand, Spot, Reserved (Standard + Convertible + Scheduled), Dedicated Host, Dedicated Instance, 
+
+## Quiz
+
+Good job, dude.
 
 
 ## References
