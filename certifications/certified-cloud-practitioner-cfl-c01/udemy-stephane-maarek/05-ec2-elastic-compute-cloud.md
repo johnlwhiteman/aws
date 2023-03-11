@@ -82,16 +82,69 @@
 
 ### Classic Ports to Know
 
-* 21: FTP (File Transfer Protocol) 
+* 21: FTP (File Transfer Protocol)
 * 22: SSH (Secure Shell) Linux
 * 22: SFTP (Secure File Transfer Protocol)
 * 80: HTTP (Unsecure Websites)
 * 442: HTTPS (Secure Websites)
 * 3389: RDP (Remote Desktop Protocol) Windows
 
-## SSH Overview
+## SSH Overview and Troubleshooting
 
 * Linux / Max / Windows >= 10
+* Connection timeout - related to the security group or filewall
+  * If still an issue if fixed in AWS, then it might be a corporate firewall issue
+* Connection refused - instance is running but no SSH server running
+* Permission denied - Wrong security key, user, EC2 configuration
+* ec2-user is the default user name
+
+## EC2 Instance Connect
+
+* Browser-based ssh connection
+* Utility does all of the auto-magic key generation in the background
+* Comes with AWS CLI
+* Never enter KEYS in EC2, use IAM roles instead, attach it to the instance (the role)
+
+## EC2 Instances Purchasing Options
+
+* On-Demand Instances - short workload, predictable pricing, pay by second
+* Reserved (1 & 3 years)
+  * Reserved Instances - long workloads
+  * Convertible Reserved Instances - long worloads with flexible instances
+* Savings Plans (1 & 3 years) - commitment to an amount of usage, long workload
+* Spot Instances - short workloads, cheap, can lose instances (less reliable)
+* Dedicated Host - book an entire physical server, control instance placement
+* Dedicated Instances - no other customers will share your hardware
+* Capacity Reservations - reserve capacity in a specific AZ for any duration
+
+### EC2 On Demand
+
+* Pay for what you use:
+  * Linux or Windows - billing per second, after the first minute
+  * All other operating systems - billing per hour
+* Highest cost, but no upfront payment
+* No long-term commitment
+* Recommended for short-term and un0interrupted workloads where you can't predict how the application will behave
+
+### EC2 Reserved Instances
+
+* Up to 72% discount compared to on-demand
+* You reserve a specific instance attributes (Instance Type, Region, Tenancy, OS)
+* Resesrvation Period - 1 year (+discount) or 3 years (+++discount)
+* Payment Options - No Upfront (+), Partial Upfront (++), All Upfront (+++)
+* Reserved Instance's Scope - Regional or Zonal (reserve capacity in an AZ)
+* Recommended for steady-state usage applications (think database)
+* Buy or sell in the Reserved Instance Marketplace
+* A "Convertible" Reserved Instances
+  * Can change the EC2 instance type, instance family, OS, scope, and tenancy
+  * Up to 66% discount
+
+### EC2 Savings Plan
+
+* Get a discount based on long-term usage (up to 72% - same as RIs)
+* Commit to a certain type of usage ($10/hour for 1 or 3 years)
+* 
+
 
 
 
