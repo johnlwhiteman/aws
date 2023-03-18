@@ -213,7 +213,7 @@
 * Security group rules
 * OS patches and updates
 * SW and utilities installed on the EC2 instance
-* IAM roles and access management 
+* IAM roles and access management
 * Data security
 
 ## Summary
@@ -223,7 +223,7 @@
 * EC2 User Data: script launched at the first start of an instance
 * SSH: start a terminal into our EC2 instances (port 22)
 * EC2 Instance Role: link to IAM roles
-* Purchasing Options: On-Emand, Spot, Reserved (Standard + Convertible + Scheduled), Dedicated Host, Dedicated Instance, 
+* Purchasing Options: On-Emand, Spot, Reserved (Standard + Convertible + Scheduled), Dedicated Host, Dedicated Instance,
 
 ## Quiz
 
