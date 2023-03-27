@@ -121,7 +121,6 @@
 * Amazon S3 Glacier Flexible Retrieval
 * Amazon S3 Glacier Deep Archive
 * Amazon S3 Intelligent Tiering
-
 * Can move between classes manually or using S3 Lifecycle configurations
 
 ## S3 Durability and Availability
@@ -277,15 +276,92 @@
 * Eventually (if need be) we can ship back the device to AWS (for transferring data for example)
 * Snowcone & Snowcone SSD (smaller)
   * 2 CPUs, 4 GB of memory, wired or wireless access
+* Snowball Edge - Compute Optimized
+    * 104 vCPUs, 416 GiB of RAM
+    * Optional GPU (useful for video processing or machine learning)
+    28 TB NVMe or 42TB HDD usable storage
+* Snowball Edge - Storage Optimized
+  * Up to 40 vCPUs, 80 GiB of RAM
+  * Object storage clustering available
+* All: Can run EC2 Instances & AWS Lambda functions (using AWS IoT Greengrass)
+* Long-term deployment options: 1 and 3 years discounted pricing
 
+### AWS OpsHub
+
+* Historically, to use Snow Family devices, you needed a CLI (Command line interface tool)
+* Today, you can use AWS OpsHub (a software you install on your computer / laptop) to manage your Snow Family Device
+* Graphical interface (GUI)
+  * Unlocking and configuring single or clustered devices
+  * Transferring files
+  * Launching and managing instances running on Snow Fmaily Devices
+  * Monitor device metrics (storage capacity, active instances on your device)
+  * Launch compatible AWS services on the devices (ex:Amazon EC2 instances, AWS DataSync, Network File System (NFS))
 
 ## Storage Gateway Overview
 
+### Hybrid Cloud for Storage
+* AWS is pushing for "hybrid cloud"
+  * AWS is pushing for "hybrid cloud"
+    * Part of your infrastructure is on the cloud
+    * Part of your infrastructure is on on-premises
+* This can be due to:
+  * Long cloud migrations
+  * Security requirements
+  * Compliance requirements
+  * IT strategy
+* S3 is a proprietary storage technology (unlike EFS/NFS), so how do you expose the S3 data on-premise?
+* AWS Storage Gateway
+
+* Block
+  * Amazon EBS
+  * EC2 Instance Store
+* File
+  * Amazon EFS
+* Object
+  * Amazon S3
+  * Glacier
+
+### AWS Storage Gateway
+
+* Bridge between on-premise data and cloud data in S3
+* Hybrid storage service to allow on-premises to seamlessly use the AWS cloud
+* Use cases: disaster recovery, backup, and restore, tiered storage
+* Types of Storage Gateway:
+  * File Gateway
+  * Volume Gateway
+  * Tape Gateway
+* No need to know the types at the exam
 
 ## Summary
 
+* Buckets and Objects: global unique name, tied to a region
+* S3 security: IAM policy, S3 Bucket Policy (public access), S3 Encryption
+* S3 Websites: host a static website on Amazon S3
+* S3 Versioning: multiple version for files, prevents accidental deletes
+* S3 Replication: same-region or cross-region, must enable versioning
+* S3 Storage Classes: standard, IA, IZ-IA, Intelligent, Glacier (Instant, Flexible, Deep)
+* Snow Family: import data onto S3 through a physical device, edge computing
+* OpsHub: desktop application to manage Snow Family devices
+* Storage Gateway: hybrid solution to extend on-premise storage to S3
 
 ## Quiz
 
+* Which S3 Storage Class is the most cost-effective for archiving data with no retrieval time requirement? - Amazon Glacier
+
+* What hybrid AWS service is used to allow on-premises servers to seamlessly use the AWS Cloud at the storage layer? - Storage Gateway
+
+* Which of the following services is a petabyte-scale data moving service (as a fleet) in or out of AWS with computing capabilities? - Snowball Edge. Snowball Edge is best-suited to move petabytes of data and offers computing capabilities. Be careful, it's recommended to use a fleet of Snowballs to move less than 10PBs of data. Over this quantity, it's better-suited to use Snowmobile.
+
+* Which of the following is an exabytes-scale data moving service in or out of AWS? - Snowmobile - Snowmobile is used to move exabytes of data in or out of AWS (1 EB=1,000 PBs=1,000,000 TBs).
+
+* A research team deployed in a location with low-internet connection would like to move 5 TBs of data to the Cloud. Which service can it use? - Snowcone - AWS Snowcone is a small, portable, rugged, and secure edge computing and data transfer device. It provides up to 8 TB of usable storage.
+
+* What can you use to define actions to move S3 objects between different storage classes?
+
+* What can you use to define actions to move S3 objects between different storage classes? Lifecycle Rules can be used to define when S3 objects should be transitioned to another storage class or when objects should be deleted after some time.
+
+* A non-profit organization needs to regularly transfer petabytes of data to the cloud and to have access to local computing capacity. Which service can help with this task? Snowball Edge Storage Optimized devices are well suited for large-scale data migrations and recurring transfer workflows, as well as local computing with higher capacity needs.
+
+* Which S3 Storage Class is suitable for less frequently accessed data, but with rapid access when needed, while keeping a high durability and allowing an Availability Zone failure? - Amazon S3 Standard-Infrequent Access allow you to store infrequently accessed data, with rapid access when needed, has a high durability, and is stored in several Availability Zones to avoid data loss in case of a disaster. It can be used to store data for disaster recovery, backups, etc.
 
 ## References
